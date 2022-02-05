@@ -24,13 +24,15 @@ def get_names() -> list:
             else:
                 final_list_song_names.append(song)
 
-        elif "/" in song:
+        if "/" in song:
             char_list = set(list(song))
             if len(char_list) == 1:
                 print("file w/ '/' char only")
                 print(song)
             else:
                 final_list_song_names.append(song)
+        else:
+            final_list_song_names.append(song)
     return final_list_song_names
 
 
@@ -92,20 +94,21 @@ def update_archive(current_archive) -> DataFrame:
     for i in range(len(assets_drive)):
         if assets_drive[i] not in current_path_list:
             print("added")
-            df_output.append(
-                [
-                    assets_drive[i],
-                    convert_names_to_path(assets_drive[i], rename_asset=False),
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                ]
-            )
+            df_temp = pd.DataFrame(
+                    {
+                        "name": assets_drive[i],
+                        "path": convert_names_to_path(assets_drive[i], rename_asset=False),
+                        "bpm": "",
+                        "scale": "",
+                        "genre": "",
+                        "mood": "",
+                        "energy": "",
+                        "artist": "",
+                        "album": "",
+                        "sub-genre": "",
+                    }
+                )
+            df_output.append(df_temp)
 
     print(df_output)
 
