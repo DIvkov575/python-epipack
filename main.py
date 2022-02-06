@@ -8,52 +8,10 @@ import time
 from mutagen.mp4 import MP4
 
 
-def get_names() -> list:
-    # makes sure names are not only " " or "/"
-    # returns list of all song names ^^
-    list_song_names = os.listdir("Assets")
-    final_list_song_names = []
-
-    for song in list_song_names:
-        if " " in song:
-            char_list = list(song)
-            print(song)
-            char_list = set(char_list)
-            if len(char_list) == 1:
-                print("file w/ ' ' char only")
-                print(song)
-            else:
-                final_list_song_names.append(song)
-
-        if "/" in song:
-            char_list = set(list(song))
-            if len(char_list) == 1:
-                print("file w/ '/' char only")
-                print(song)
-            else:
-                final_list_song_names.append(song)
-        else:
-            final_list_song_names.append(song)
-    # print(final_list_song_names)
-    return final_list_song_names
-
-
-def convert_names_to_path(song_list, rename_asset=True) -> list:
-    # return song names cleaned -> usable paths
-    path_list_out = []
-    for song_in in song_list:
-        if " " or "/" in song_in:
-            song_out = song_in.replace(" ", "")
-            song_out = song_out.replace("/", "")
-            path_list_out.append(song_out)
-            if rename_asset:
-                os.rename(
-                    os.path.join("Assets", song_in), os.path.join("Assets", song_out)
-                )
-
-    return path_list_out
-
-
+def get_paths(directory="Assets") -> list:
+    # pulls all file paths from director
+    # removes spaces from all paths
+    return os.listdir(directory)
 def play_song(path):
     try:
         song = MP4(path)
@@ -71,42 +29,41 @@ def play_song(path):
 
 df1 = pd.DataFrame(
     {
-        "name": get_names(),
-        "path": convert_names_to_path(get_names()),
-        "bpm": ["NA" for _ in range(len(get_names()))],
-        "scale": ["NA" for _ in range(len(get_names()))],
-        "genre": ["NA" for _ in range(len(get_names()))],
-        "mood": ["NA" for _ in range(len(get_names()))],
-        "energy": ["NA" for _ in range(len(get_names()))],
-        "artist": ["NA" for _ in range(len(get_names()))],
-        "album": ["NA" for _ in range(len(get_names()))],
-        "sub-genre": ["NA" for _ in range(len(get_names()))],
+        "name": ["NA" for _ in range(len(get_paths()))],
+        "path": get_paths(),
+        "bpm": ["NA" for _ in range(len(get_paths()))],
+        "scale": ["NA" for _ in range(len(get_paths()))],
+        "genre": ["NA" for _ in range(len(get_paths()))],
+        "mood": ["NA" for _ in range(len(get_paths()))],
+        "energy": ["NA" for _ in range(len(get_paths()))],
+        "artist": ["NA" for _ in range(len(get_paths()))],
+        "album": ["NA" for _ in range(len(get_paths()))],
+        "sub-genre": ["NA" for _ in range(len(get_paths()))],
     }
 )
 
 
-def update_archive(current_archive) -> DataFrame:
+def update_archive(current_archive=df1) -> DataFrame:
     # compare for new files in archive against current-archive (df1)
-    #
-    global df1
+    # currently unusable -- checks auto-update df1 : updated view of `assets`
     df_output = DataFrame()
     current_path_list = current_archive["path"]
-    assets_drive = convert_names_to_path(get_names())
+    paths_in_assets = get_paths()
 
-    for i in range(len(assets_drive)):
-        if assets_drive[i] not in current_path_list:
+    for i in range(len(paths_in_assets)):
+        if paths_in_assets[i] not in current_path_list:
             df_temp = pd.DataFrame(
                     {
-                        "name": assets_drive[i],
-                        "path": convert_names_to_path(assets_drive[i], rename_asset=False),
-                        "bpm": "NA",
-                        "scale": "NA",
-                        "genre": "NA",
-                        "mood": "NA",
-                        "energy": "NA",
-                        "artist": "NA",
-                        "album": "NA",
-                        "sub-genre": "NA",
+                        "name": ["NA"],
+                        "path": [paths_in_assets[i]],
+                        "bpm": ["NA"],
+                        "scale": ["NA"],
+                        "genre": ["NA"],
+                        "mood": ["NA"],
+                        "energy": ["NA"],
+                        "artist": ["NA"],
+                        "album": ["NA"],
+                        "sub-genre": ["NA"],
                     }
                 )
             pd.concat([df_output, df_temp])
@@ -114,5 +71,5 @@ def update_archive(current_archive) -> DataFrame:
     print(df_output)
 
 
-get_names()
+update_archive()
 # update_archive(df1)
