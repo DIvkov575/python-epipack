@@ -17,6 +17,7 @@ def get_names() -> list:
     for song in list_song_names:
         if " " in song:
             char_list = list(song)
+            print(song)
             char_list = set(char_list)
             if len(char_list) == 1:
                 print("file w/ ' ' char only")
@@ -33,6 +34,7 @@ def get_names() -> list:
                 final_list_song_names.append(song)
         else:
             final_list_song_names.append(song)
+    # print(final_list_song_names)
     return final_list_song_names
 
 
@@ -86,31 +88,31 @@ df1 = pd.DataFrame(
 def update_archive(current_archive) -> DataFrame:
     # compare for new files in archive against current-archive (df1)
     #
-    df_output = DataFrame
+    global df1
+    df_output = DataFrame()
     current_path_list = current_archive["path"]
-    current_name_list = current_archive["name"]
     assets_drive = convert_names_to_path(get_names())
 
     for i in range(len(assets_drive)):
         if assets_drive[i] not in current_path_list:
-            print("added")
             df_temp = pd.DataFrame(
                     {
                         "name": assets_drive[i],
                         "path": convert_names_to_path(assets_drive[i], rename_asset=False),
-                        "bpm": "",
-                        "scale": "",
-                        "genre": "",
-                        "mood": "",
-                        "energy": "",
-                        "artist": "",
-                        "album": "",
-                        "sub-genre": "",
+                        "bpm": "NA",
+                        "scale": "NA",
+                        "genre": "NA",
+                        "mood": "NA",
+                        "energy": "NA",
+                        "artist": "NA",
+                        "album": "NA",
+                        "sub-genre": "NA",
                     }
                 )
-            df_output.append(df_temp)
+            pd.concat([df_output, df_temp])
 
     print(df_output)
 
 
-update_archive(df1)
+get_names()
+# update_archive(df1)
