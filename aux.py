@@ -1,7 +1,10 @@
 import pandas as pd
 from pandas import DataFrame
 import os
-df1 = pd.read_csv("Tables/song-list-a.csv")
+
+# import sys
+import time
+from mutagen.mp4 import MP4
 
 
 def get_asset_names(directory="Assets") -> list:
@@ -55,18 +58,6 @@ def update_archive(current_archive=DataFrame()) -> DataFrame:
     print(df_output)
 
 
-def sort_a(song_index=df1, sort_type='linear-increase', sort_by='aggresion'):
-    list_of_songs = song_index['paths']
-
-
-
-
-
-# df1.to_csv('Tables/song-list-a.csv')
-# df2 = pd.read_csv("Tables/song-list-a.csv")
-# print(df2.columns)
-# print([df2[a] for a in df2.columns])
-
 a = range(len(get_asset_names()))
 df1 = pd.DataFrame(
     {
@@ -92,4 +83,9 @@ df3 = pd.DataFrame(
         "agression": ["NA" for _ in a],
 
     }
-    )
+)
+
+# df1.to_csv('Tables/song-list-a.csv')
+# df2 = pd.read_csv("Tables/song-list-a.csv")
+# print(df2.columns)
+# print([df2[a] for a in df2.columns])
