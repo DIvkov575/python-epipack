@@ -53,6 +53,26 @@ def update_archive(current_archive=DataFrame()) -> DataFrame:
             pd.concat([df_output, df_temp])
 
     print(df_output)
+    
+
+
+ 
+def CountFrequency(my_list):
+    # Python program to count the frequency of
+    # elements in a list using a dictionary
+    
+    # Creating an empty dictionary
+    freq = {}
+    for item in my_list:
+        if (item in freq):
+            freq[item] += 1
+        else:
+            freq[item] = 1
+ 
+    for key, value in freq.items():
+        print ("% d : % d"%(key, value))    
+
+ 
 
 
 def sort_a(song_index=df1, sort_type='linear-increase', sort_by='aggresion'):
