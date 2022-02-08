@@ -56,8 +56,21 @@ def update_archive(current_archive=DataFrame()) -> DataFrame:
 
 
 def sort_a(song_index=df1, sort_type='linear-increase', sort_by='aggresion'):
-    list_of_songs = song_index['paths']
-
+    list_of_songs_paths = song_index['paths']
+    list_of_song_names = song_index["names"]
+    list_of_aggression = song_inde["aggression"]
+    possible_sort_by = ['aggression']
+    possible_sort_type = ['linear-increase', 'linear-decrease']
+    
+    if sort_type in possible_sort_by:
+        if sort_type == "linear-increase":
+            ordered_sort_by = sort(list_of_aggresion)
+        if sort_type == "linear-decrease":
+            ordered_sort_by = sort(list_of_aggresion, reverse=True)
+    else: print("input sort-type not possible")
+    
+    return ordered_sort_by
+    
 
 
 
