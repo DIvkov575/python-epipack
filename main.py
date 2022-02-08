@@ -69,13 +69,13 @@ def CountFrequency(my_list):
         else:
             freq[item] = 1
  
-    for key, value in freq.items():
-        print ("% d : % d"%(key, value))    
+    return(freq)
+    print(freq)
 
  
 
 
-def sort_a(song_index=df1, sort_type='linear-increase', sort_by='aggresion'):
+def sort_a(song_index=df1, sort_type='linear-increase', sort_by='aggresion', repeat_songs=True):
     list_of_songs_paths = song_index['paths']
     list_of_song_names = song_index["names"]
     list_of_aggression = song_inde["aggression"]
@@ -92,8 +92,22 @@ def sort_a(song_index=df1, sort_type='linear-increase', sort_by='aggresion'):
     return ordered_sort_by
     
 
+def sort_b(song_index=df1, sort_type='linear-increase', sort_by='aggresion', parameter=[], time='default', repeat_songs=True)
+    list_of_song_names = song_index['names']
+    possible_sort_types = ['linear-increase', 'linear-decrease', 'parabola-fliped', 'sine']
+    possible_sort_by = ['aggression', 'energy', 'ambience']
+    Possible_parameters = ['sine_interval_high', 'sine_interval_low', 'increase-time', 'hold-time', 'decrease-time']
+    
+    collapsed_sort_by_values = Countfrequency(song_index[sort_by])
 
-
+    
+def sort_c(song_index=df1, sort_type='linear-increase', sort_by='aggresion', parameter=[], repeat_songs=True)
+    list_of_song_names = song_index['names']
+    possible_sort_types = ['linear-increase', 'linear-decrease', 'parabola-fliped', 'sine']
+    possible_sort_by = ['aggression', 'energy', 'ambience']
+    Possible_parameters = ['sine_interval_high', 'sine_interval_low', 'increase-time', 'hold-time', 'decrease-time']
+    
+    collapsed_sort_by_values = Countfrequency(song_index[sort_by])
 
 # df1.to_csv('Tables/song-list-a.csv')
 # df2 = pd.read_csv("Tables/song-list-a.csv")
