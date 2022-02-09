@@ -1,6 +1,7 @@
 import pandas as pd
 from pandas import DataFrame
 import os
+import random
 df1 = pd.read_csv("Tables/song-list-a.csv")
 
 
@@ -102,25 +103,52 @@ def sort_b(song_index=df1,
            sort_by='aggresion', 
            parameter= [], 
            repeat_songs = True,
-           generic_length= 15
-           increase_length = 2,
-           hold_length = 5,
-           sine_cycle_count = 3,
-           sine_cycle_length = 5,
-           sine_high_count = 2,
-           sine_low_count = 3,
-           decay_length = 3,)
+           mid_point_threshhold = 65,
+           
+           generic_length= 10,
+           increase_length = 0,
+           decay_length = 0,
+           mid_point = 'hold',
+           hold_length = 'NA',
+           sine_cycle_count = 'NA',
+           sine_cycle_length = 'NA',
+           sine_high_count = 'NA',
+           sine_low_count = 'NA') -> list:
 
     list_of_song_names = song_index['names']
+    list_of_song_paths = song_index['paths']
     possible_sort_types = ['linear-increase', 'linear-decrease', 'parabola-fliped', 'sine', 'built-sine']
     possible_sort_by = ['aggression', 'energy', 'ambience']
-    Possible_parameters = [increase-time, increase-length, hold, sine, decrease-length, decrease-time, sine-cylce]
     queue = []
-    
     collapsed_sort_by_values = Countfrequency(song_index[sort_by])
     song_sort_by_length = len(collapsed_sort_by_values.keys)
     
-    if 
+    if lower(mid_point) == 'hold':
+        sine_cycle_count = 'NA'
+        sine_cycle_length = 'NA'
+        sine_high_count = 'NA'
+        sine_low_count = 'NA'
+    if lower(mid_point) == 'sine':
+        hold_length = 'NA'
+    
+    
+    
+    
+    if song_sort_by_length == 1:
+        queue = [list_of_song_paths[random.randint(1, len(list_of_song_names))] for _ in range(generic_length)]
+        print(queue)
+    if song_sort_by_length == 2:
+        smaller_sort_by_value = min(collapsed_sort_by_values.keys)
+        larger_sort_by_value = max(collapsed_sort_by_values.keys)
+        queue.append(song_index.loc[song_index[sort_by] == smaller_sort_by_value])
+        queue.append(song_index.loc[song_index[sort_by] == larger_sort_by_value])
+        print(queue)
+    if song_sort_by_length == 3:
+        smaller_sort_by_value = min(collapsed_sort_by_values.keys)
+        larger_sort_by_value = max(collapsed_sort_by_values.keys)
+        collapsed_sort_by_values.pop(smaller_sort_by_value)
+        collapsed_sort_by_values.pop(larger_sort_by_value)
+
     
 #    split by aggression count
 #    if multiple of each ->
