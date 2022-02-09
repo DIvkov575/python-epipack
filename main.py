@@ -96,19 +96,36 @@ def sort_b(song_index=df1, sort_type='linear-increase', sort_by='aggresion', par
     list_of_song_names = song_index['names']
     possible_sort_types = ['linear-increase', 'linear-decrease', 'parabola-fliped', 'sine']
     possible_sort_by = ['aggression', 'energy', 'ambience']
-    Possible_parameters = ['sine_interval_high', 'sine_interval_low', 'increase-time', 'hold-time', 'decrease-time']
+    Possible_parameters = ['sine_interval_high', 'sine_interval_low', 'sine_time', 'sine_count', 'increase-time', 'hold-time', 'decrease-time']
     
     collapsed_sort_by_values = Countfrequency(song_index[sort_by])
 
     
-def sort_c(song_index=df1, sort_type='linear-increase', sort_by='aggresion', parameter=[], repeat_songs=True)
+def sort_c(song_index=df1, 
+           sort_type='linear-increase', 
+           sort_by='aggresion', 
+           parameter=[], 
+           repeat_songs=True,
+           sine_interval_high_time=,
+           sine_interval_low_time,
+           sine_interval_high_length=,
+           sine_interval_low_length=,
+           sine_time,
+           sine_count,
+           increase-time,
+           hold-time,
+           decrease-time,)
     list_of_song_names = song_index['names']
     possible_sort_types = ['linear-increase', 'linear-decrease', 'parabola-fliped', 'sine']
     possible_sort_by = ['aggression', 'energy', 'ambience']
-    Possible_parameters = ['sine_interval_high', 'sine_interval_low', 'increase-time', 'hold-time', 'decrease-time']
+    Possible_parameters = ['', '', '', '', '', '', '']
     
     collapsed_sort_by_values = Countfrequency(song_index[sort_by])
-
+#    split by aggression count
+#    if multiple of each ->
+#    
+#    
+#    
 # df1.to_csv('Tables/song-list-a.csv')
 # df2 = pd.read_csv("Tables/song-list-a.csv")
 # print(df2.columns)
