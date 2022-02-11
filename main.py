@@ -119,9 +119,12 @@ def sort_b(song_index=df1,
     list_of_song_paths = song_index['paths']
     possible_sort_types = ['linear-increase', 'linear-decrease', 'parabola-fliped', 'sine', 'built-sine']
     possible_sort_by = ['aggression', 'energy', 'ambience']
-    queue = []
     collapsed_sort_by_values = Countfrequency(song_index[sort_by])
-    song_sort_by_length = len(collapsed_sort_by_values.keys)
+    song_sort_by_length = len(collapsed_sort_by_values.keys
+    queue = []
+    songs_upper_thresh = Dataframe()
+    songs_lower_thresh = Dataframe()
+)
     
     if lower(mid_point) == 'hold':
         sine_cycle_count = 'NA'
@@ -131,9 +134,23 @@ def sort_b(song_index=df1,
     if lower(mid_point) == 'sine':
         hold_length = 'NA'
     
+    # ------------------------- #
+    #     stats -- section      #
+    if not collapsed_sort_by_values:
+       raise "No songs"
+      
+#     if collapsed_sort_by_values == 1:
+#     if df1[sort_by].between(mid_point_threshold,100).any():
+#         pass
+#     if df1[sort_by].between(0,mid_point_threshold-1).any():
+#         pass
     
     
     
+    
+    
+    
+    # ------------------------- #
     if song_sort_by_length == 1:
         queue = [list_of_song_paths[random.randint(1, len(list_of_song_names))] for _ in range(generic_length)]
         print(queue)
