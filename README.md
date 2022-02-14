@@ -1,9 +1,9 @@
 # Song Path Project
 ***
-current objective : 
+Objective : 
 1) user uploads songs
 2) contributes song attributes for each
-3) Algorithm Constructs song path according to user specs
+3) Algorithm Constructs song path according to user selected attributes
 ---
 Future : 
 - webscrape for info
