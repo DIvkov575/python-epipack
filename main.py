@@ -117,11 +117,14 @@ def sort_b(song_index=df1,
 
     list_of_song_names = song_index['names']
     list_of_song_paths = song_index['paths']
-    possible_sort_types = ['linear-increase', 'linear-decrease', 'parabola-fliped', 'sine', 'built-sine']
+#     possible_sort_types = ['linear-increase', 'linear-decrease', 'parabola-fliped', 'sine', 'built-sine']
     possible_sort_by = ['aggression', 'energy', 'ambience']
     collapsed_sort_by_values = Countfrequency(song_index[sort_by])
     song_sort_by_length = len(collapsed_sort_by_values.keys
     queue = []
+    increase_queue = Dataframe()
+    decrease_queue = Dataframe()
+    midpoint_queue = Dataframe()
     songs_upper_thresh = Dataframe()
     songs_lower_thresh = Dataframe()
 )
@@ -134,37 +137,54 @@ def sort_b(song_index=df1,
     if lower(mid_point) == 'sine':
         hold_length = 'NA'
     
+# append row if value in sort by, below threshhold
+    for row in song_index:
+        if row[sort_by] < mid_point_threshhold:
+            songs_lower_thresh.append(row)
+        elif row[sort_by] >= mid_point_threshhold:
+            song_lower_thresh.append(row)
+        else:
+            raise "bad sort by, in row"
+            
+if len(songs_lower_thresh) > 0:     
+    if len(song_lower_threshhold) < increase_length + decrease_length:
+        if len(song_lower_threshhold) == increase_length:
+            increase_queue = song_lower_threshhold.sort_by(Sort_by, axis=1, kind='merge_sort')
+        if len(song_lower_threshhold) == decrease_length:
+            increase_queue = song_lower_threshhold.sort_by(Sort_by, axis=1, ascending=False, kind='merge_sort')
+
+        
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
     # ------------------------- #
-    #     stats -- section      #
-    if not collapsed_sort_by_values:
-       raise "No songs"
-      
-#     if collapsed_sort_by_values == 1:
-#     if df1[sort_by].between(mid_point_threshold,100).any():
-#         pass
-#     if df1[sort_by].between(0,mid_point_threshold-1).any():
-#         pass
-    
-    
-    
-    
-    
-    
-    # ------------------------- #
-    if song_sort_by_length == 1:
-        queue = [list_of_song_paths[random.randint(1, len(list_of_song_names))] for _ in range(generic_length)]
-        print(queue)
-    if song_sort_by_length == 2:
-        smaller_sort_by_value = min(collapsed_sort_by_values.keys)
-        larger_sort_by_value = max(collapsed_sort_by_values.keys)
-        queue.append(song_index.loc[song_index[sort_by] == smaller_sort_by_value])
-        queue.append(song_index.loc[song_index[sort_by] == larger_sort_by_value])
-        print(queue)
-    if song_sort_by_length == 3:
-        smaller_sort_by_value = min(collapsed_sort_by_values.keys)
-        larger_sort_by_value = max(collapsed_sort_by_values.keys)
-        collapsed_sort_by_values.pop(smaller_sort_by_value)
-        collapsed_sort_by_values.pop(larger_sort_by_value)
+#     if song_sort_by_length == 1:
+#         queue = [list_of_song_paths[random.randint(1, len(list_of_song_names))] for _ in range(generic_length)]
+#         print(queue)
+#     if song_sort_by_length == 2:
+#         smaller_sort_by_value = min(collapsed_sort_by_values.keys)
+#         larger_sort_by_value = max(collapsed_sort_by_values.keys)
+#         queue.append(song_index.loc[song_index[sort_by] == smaller_sort_by_value])
+#         queue.append(song_index.loc[song_index[sort_by] == larger_sort_by_value])
+#         print(queue)
+#     if song_sort_by_length == 3:
+#         smaller_sort_by_value = min(collapsed_sort_by_values.keys)
+#         larger_sort_by_value = max(collapsed_sort_by_values.keys)
+#         collapsed_sort_by_values.pop(smaller_sort_by_value)
+#         collapsed_sort_by_values.pop(larger_sort_by_value)
 
     
 #    split by aggression count
