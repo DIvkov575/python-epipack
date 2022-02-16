@@ -37,3 +37,30 @@ df1 = pd.DataFrame(
         "sub-genre": ["NA" for _ in range(len(get_asset_names()))],
     }
 )
+
+a = range(len(get_asset_names()))
+df1 = pd.DataFrame(
+    {
+        "name": ["NA" for _ in a],
+        "path": get_asset_paths(get_asset_names()),
+        "bpm": ["NA" for _ in a],
+        "genre": ["NA" for _ in a],
+        "mood": ["NA" for _ in a],
+        "energy": ["NA" for _ in a],
+        "artist": ["NA" for _ in a],
+        "album": ["NA" for _ in a],
+        "sub-genre": ["NA" for _ in a],
+    }
+)
+df3 = pd.DataFrame(
+    {
+        "name": ["NA" for _ in a],
+        "Artist": ["NA" for _ in a],
+        "path": get_asset_paths(get_asset_names()),
+        "bpm": ["NA" for _ in a],
+        "genre": ["NA" for _ in a],
+        "sub-genre": ["NA" for _ in a],
+        "agression": ["NA" for _ in a],
+
+    }
+)
