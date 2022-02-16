@@ -64,3 +64,28 @@ df3 = pd.DataFrame(
 
     }
 )
+
+
+def sort_a(song_index=df1,
+           sort_type='linear-increase',
+           sort_by='aggresion',
+           parameter=[],
+           repeat_songs=True,
+           increase_time=6,
+           increase_length=2,
+           hold_time=20,
+           hold_length=5,
+           sine_cycle_count=3,
+           sine_cycle_length=5,
+           sine_high_count=2,
+           sine_low_count=3,
+           decay_time=10,
+           decay_length=3, ):
+
+    list_of_song_names = song_index['names']
+    possible_sort_types = ['linear-increase', 'linear-decrease', 'parabola-fliped', 'sine', 'built-sine']
+    possible_sort_by = ['aggression', 'energy', 'ambience']
+    # Possible_parameters = [increase - time, increase - length, hold, sine, decrease - length, decrease - time,
+    #                        sine - cylce]
+
+    collapsed_sort_by_values = countfrequency(song_index[sort_by])
