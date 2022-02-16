@@ -2,6 +2,7 @@ import pandas as pd
 from pandas import DataFrame
 import os
 import random
+from bisect import bisect_left
 
 df1 = pd.read_csv("Tables/song-list-a.csv")
 
@@ -97,6 +98,8 @@ def sort_a(song_index=df1,
 
     collapsed_sort_by_values = countfrequency(song_index[sort_by])
 
+    #-----------------------------------------#
+    #-----------------------------------------#
 
 def sort_b(song_index=df1,
            sort_type='linear-increase',
@@ -150,35 +153,18 @@ if len(songs_lower_thresh) > 0:
     if len(song_lower_threshhold) < increase_length + decrease_length:
         if len(song_lower_threshhold) == increase_length:
             increase_queue = song_lower_threshhold.sort_by(Sort_by, axis=1, kind='merge_sort')
+        if len(song_lower_threshhold) > increase_length:
+            min_val = min(song_lower_threshhold[sort_by])
+            max_val = max(song_lower_threshhold[sort_by])
+            minmaxavg = (max_val-min_val)//increase_length
+            _val_list = [i*minmaxavg for i in range(increase_length)]
+            
+
+            
         if len(song_lower_threshhold) == decrease_length:
             increase_queue = song_lower_threshhold.sort_by(Sort_by, axis=1, ascending=False, kind='merge_sort')
 
-    # ------------------------- #
-#     if song_sort_by_length == 1:
-#         queue = [list_of_song_paths[random.randint(1, len(list_of_song_names))] for _ in range(generic_length)]
-#         print(queue)
-#     if song_sort_by_length == 2:
-#         smaller_sort_by_value = min(collapsed_sort_by_values.keys)
-#         larger_sort_by_value = max(collapsed_sort_by_values.keys)
-#         queue.append(song_index.loc[song_index[sort_by] == smaller_sort_by_value])
-#         queue.append(song_index.loc[song_index[sort_by] == larger_sort_by_value])
-#         print(queue)
-#     if song_sort_by_length == 3:
-#         smaller_sort_by_value = min(collapsed_sort_by_values.keys)
-#         larger_sort_by_value = max(collapsed_sort_by_values.keys)
-#         collapsed_sort_by_values.pop(smaller_sort_by_value)
-#         collapsed_sort_by_values.pop(larger_sort_by_value)
 
-
-#    split by aggression count
-#    if multiple of each ->
-#
-#
-#
-# df1.to_csv('Tables/song-list-a.csv')
-# df2 = pd.read_csv("Tables/song-list-a.csv")
-# print(df2.columns)
-# print([df2[a] for a in df2.columns])
 
 a = range(len(get_asset_names()))
 df1 = pd.DataFrame(
