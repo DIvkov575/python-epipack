@@ -1,5 +1,7 @@
 # Song Path Project
 ***
+Improved Song Selection App 
+***
 Objective : 
 1) user uploads songs
 2) contributes song attributes for each
@@ -14,7 +16,6 @@ Current :
 - Song loading
 ---
 Todo : 
-- Finish loading => external files
-  - setup file system
-- Song Path Algorithm
+- Selection Algorith Basic
+- Compound Selection Algorithm
 - GUI
